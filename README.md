@@ -25,30 +25,33 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+- [x] Detail which bugs you found.
+- [x] Explain what fixes you applied.
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+1. Pick a difficulty in the sidebar. The sidebar shows the number range and how many attempts you get:
+   - Easy: 1 to 20, 6 attempts
+   - Normal: 1 to 50, 8 attempts
+   - Hard: 1 to 100, 5 attempts
+2. Read the box under "Make a guess." It shows the range for your difficulty and how many attempts you have left.
+3. Type a whole number in the "Enter your guess" box and click **Submit Guess**.
+4. Read the hint under the button:
+   - "📈 Go HIGHER!" means the secret number is larger than your guess.
+   - "📉 Go LOWER!" means the secret number is smaller than your guess.
+5. Keep guessing, using each hint to narrow the range. Your score changes after each guess.
+6. Win by entering the secret number. The game shows balloons and your final score.
+7. If you run out of attempts, the game ends and reveals the secret number.
+8. Click **New Game** to play again. Your score, attempts, and history reset, and a new secret number is picked.
+9. Uncheck **Show hint** if you want to play without hints.
+10. Change the difficulty at any time. The game restarts with the new range and attempt limit.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
-
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+tests\test_game_logic.py ....                                                                                                                                                          [100%]
+
+===================================================================================== 4 passed in 0.03s =====================================================================================
 ```
-
-## 🚀 Stretch Features
-
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
