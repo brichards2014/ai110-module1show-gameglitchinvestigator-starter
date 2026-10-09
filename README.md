@@ -26,8 +26,19 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [x] Describe the game's purpose.
+## Game Purpose
+A Streamlit number guessing game. The player picks a difficulty, guesses the secret number, and gets a Higher or Lower hint after each guess.
+
 - [x] Detail which bugs you found.
+## Bugs Found
+- Hints were reversed in `check_guess`.
+- The secret was converted to a string on even attempts.
+- Difficulty ranges were out of order, and the info text and New Game ignored the selected range.
 - [x] Explain what fixes you applied.
+## Fixes Applied
+- Moved the logic into `logic_utils.py` and corrected the hint messages.
+- Removed the string conversion.
+- Set ranges to Easy 1 to 20, Normal 1 to 50, Hard 1 to 100, and used them in the info text and New Game.
 
 ## 📸 Demo Walkthrough
 
