@@ -1,76 +1,32 @@
-# AI Interactions Log
+# AI Interactions
 
-> **Stretch features only.** Only fill in the sections that apply to stretch features you attempted. If you did not attempt a stretch feature, leave its section blank or delete it. This file is not required for the core project.
+## Advanced Edge-Case Testing
 
----
+### Prompt
 
-## Agent Workflow (SF8)
+I asked Claude to add more pytest cases for the extra credit after my two bug fixes were done and passing. My message was: "Lets do the additional pytests for the extra cred." Claude had the project files and the grading rubric in context, so it targeted the stretch requirement of three or more edge-case tests.
 
-> Document your experience using an AI agent (e.g., Cursor Agent, Claude, Copilot) to make multi-step changes autonomously.
+### What Claude Generated
 
-**What task did you give the agent?**
+Claude extended `tests/test_game_logic.py` with edge-case tests for `parse_guess`, `check_guess`, `update_score`, and `get_range_for_difficulty`. It kept my four original tests and used `pytest.mark.parametrize` to cover several inputs with one test function.
 
-<!-- Describe the goal you asked the agent to accomplish -->
+### Edge Cases and Rationale
 
-**What did the agent do?**
+| Edge case | Function | Why it was chosen |
+|---|---|---|
+| Empty string and `None` | `parse_guess` | The text box starts empty, so this is the most common bad input |
+| `"abc"`, `"12abc"`, `"1e3"`, `"nan"`, `"--5"`, spaces only | `parse_guess` | Players can type anything. The game must show an error instead of crashing |
+| `"-5"` | `parse_guess` | Confirms negative numbers parse correctly |
+| `"7.9"` | `parse_guess` | The code truncates decimals to 7. The test documents that behavior |
+| `" 42 "` | `parse_guess` | Confirms spaces around a number are ignored |
+| Guess of -5 against a secret of 10 | `check_guess` | Confirms the comparison still gives the right hint for negative values |
+| Win on attempt 1 and attempt 20 | `update_score` | The points formula goes negative on late attempts without the 10-point floor |
+| Unknown difficulty name | `get_range_for_difficulty` | Confirms the fallback range of 1 to 50 |
 
-<!-- List the steps the agent took (files edited, commands run, etc.) -->
+### Verification
 
-**What did you have to verify or fix manually?**
+I ran `py -m pytest` from the project root. The terminal output is pasted in the Test Results section of `README.md`.
 
-<!-- Describe anything the agent got wrong or that required human review -->
+### Limitation Found
 
----
-
-## Test Generation (SF7)
-
-> Document how you used AI to help generate or improve tests.
-
-| Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
-|-----------|-------------|-------------------|--------------|----------------|
-| | | | | |
-| | | | | |
-| | | | | |
-
----
-
-## Linting & Style (SF9)
-
-> Document your use of AI for linting or code style improvements.
-
-**Prompt used:**
-
-```
-<!-- Paste the prompt you gave the AI -->
-```
-
-**Linting output before:**
-
-```
-<!-- Paste relevant linter warnings/errors -->
-```
-
-**Changes applied:**
-
-<!-- Describe what you changed based on the AI's suggestions -->
-
----
-
-## Model Comparison (SF11)
-
-> Compare two AI models on the same task.
-
-**Task given to both models:**
-
-<!-- Describe what you asked each model to do -->
-
-| | Model A | Model B |
-|-|---------|---------|
-| **Model name** | | |
-| **Response summary** | | |
-| **More Pythonic?** | | |
-| **Clearer explanation?** | | |
-
-**Which did you prefer and why?**
-
-<!-- Your conclusion -->
+The edge-case tests showed that `parse_guess` accepts numbers outside the game range. A guess of `-5` or `500` is accepted and counts as an attempt. The tests document this current behavior. I did not fix it in this project.
