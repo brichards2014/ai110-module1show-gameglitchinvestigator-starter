@@ -3,20 +3,19 @@
 Answer each question in 3 to 5 sentences. Be specific and honest about what actually happened while you worked. This is about your process, not trying to sound perfect.
 
 ## 1. What was broken when you started?
+The number range for the guess should be constrained by the difficulty, easy should be 1 to 20, normal 1 to 100 and hard 1 to 50. The ranges displayed do not make sense, easy and hard should be swapped. The reality of the game showed the range is not taken into consideration when a difficulty is selected, any difficulty selected, the guess range remains 1 to 100.
 
-- What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the hints were backwards").
+The 'guess' itself was flawed. It would never get to the right result. The first run, I guessed small, I chose 5, and the hint kept saying go lower, when I reached 1, it still had go lower and that was the lowest accepted number. The second run, I started at 1, and the hint was still go lower, this proved the input itself was not being checked correctly against the answer.
 
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Input | Expected Behavior                                                        | Actual Behavior                      | Console Output / Error |
+|-------|--------------------------------------------------------------------------|--------------------------------------|------------------------|
+|Visual |Difficulty range should increase with each jump from easy - medium - hard |Difficulty Range incorrect            | None
+|5|1| | |Hint should point you in the right direction of the answer                |Hint is misleading                    | None
+|Visual |"Guess a number" Should update with difficulty                            |Guess does not update with difficulty | None
 
 ---
 
